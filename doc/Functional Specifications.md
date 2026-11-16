@@ -17,6 +17,3 @@
 * Permettre d'ajouter, de modifier ou de supprimer un créneau.
 * Afficher les prochains créneaux où un autre utilisateur recherche quelqu’un pour 
 l’aider dans une activité où il n’a pas la compétence correspondante; il peut alors indiquer qu’il désire se rendre disponible pour ce créneau, lequel ne sera alors plus proposé à aucun autre utilisateur dans cet affichage.
-
-**POUR LES ADMINISTRATEURS DU SITE, l'application permet en plus:**
-* Permettre ajouter ou supprimer un utilisateur.
