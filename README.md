@@ -33,6 +33,19 @@ This command permit to add, delete or modify the tables with models implementers
 python manage.py shell
 ```
 
+#### Create a user in shell Django
+
+**Vigilance:** L'argument doit être en simple quote pour que le mot de masse soit crypté par l'algorithme PBKDF2. En
+double quotes, cela affiche le mot de passe en clair.
+
+```py
+from django.contrib.auth.models import User
+
+user = User.objects.create_user(username="toupie", first_name="Toto", last_name="Vopa", email="tv@examp.com",
+                                password='fselhiµ594fer486y')
+user.save()
+```
+
 ### Create an admin in database
 
 ```bash
