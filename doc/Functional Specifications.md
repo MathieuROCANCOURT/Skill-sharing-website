@@ -7,7 +7,7 @@
 
 **POUR LES UTILISATEURS DU SITE, l'application permet en plus:**
 
-* Afficher les autres utilisateurs sur le site site qui sont:
+* Afficher les autres utilisateurs sur le site qui sont:
   - le nom de famille
   - le prénom
   - le courrier électronique
