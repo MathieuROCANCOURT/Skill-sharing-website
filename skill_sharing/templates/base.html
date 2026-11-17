@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="{% static 'skill_sharing/style.css' %}">
+    <title>{% block title %}Mon super site d'entraide'{% endblock %}</title>
+</head>
+
+<body>
+<div id="sidebar">
+    {% block sidebar %}
+    <ul>
+        <li><a href="/skill_sharing/">Accueil</a></li>
+        {% if user.is_authenticated %}
+        <li>Profil: {{ user.username }}</li> <a href="/skill_sharing/logout"><button>Déconnexion</button></a>
+        {% else %}
+        <li><a href="/skill_sharing/login">Connexion</a></li>
+        {% endif %}
+    </ul>
+    {% endblock %}
+</div>
+
+<div id="content">
+    {% block content %}{% endblock %}
+</div>
+</body>
+</html>
