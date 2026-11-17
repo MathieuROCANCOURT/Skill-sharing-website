@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -6,17 +7,10 @@ from django.db import models
 
 class Skill(models.Model):
     skill_name = models.TextField()
-    Activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
 
 class Activity(models.Model):
+    Activity = models.ForeignKey(Skill, on_delete=models.CASCADE)
     activity_name = models.TextField()
     details = models.TextField()
-
-
-class User(models.Model):
-    lastname = models.TextField()
-    firstname = models.TextField()
-    username = models.TextField()
-    password = models.TextField()
-    skills = models.ManyToManyRel(Skill)
