@@ -3,15 +3,15 @@
 {% block content %}
 
 {% if form.errors %}
-<p class="error_message">Your username and password didn't match. Please try again.</p>
+<p class="error_message">Votre nom d'utilisateur et mot de passe ne correspondent pas. Veuillez Réessayer.</p>
 {% endif %}
 
 {% if next %}
 {% if user.is_authenticated %}
-    <p class="error_message">Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
+<p class="error_message">Votre compte n'a pas accès à cette page. Pour procéder, merci de vous connectez avec un compte
+    qui a accès.</p>
 {% else %}
-    <p class="error_message">Please login to see this page.</p>
+<p class="error_message">Veuillez vous connecter sur cette page.</p>
 {% endif %}
 {% endif %}
 
@@ -19,7 +19,7 @@
     {% csrf_token %}
     <table>
         <thead>
-            <th colspan="2">CONNEXION</th>
+        <th colspan="2">CONNEXION</th>
         </thead>
         <tr>
             <td>{{ form.username.label_tag }}</td>
