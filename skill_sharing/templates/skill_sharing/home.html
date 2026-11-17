@@ -13,4 +13,29 @@ Voici vos compétences:
 {% else %}
 <p>Vous n'avez pas de compétence.</p>
 {% endif %}
+
+{% if slots %}
+Voici vos rendez-vous:
+<ul>
+    {% for slot in slots %}
+    <li>
+        {% if slot.start_date != slot.end_date %}
+        Du {{ slot.start_date }} au {{ slot.end_date }}
+        {% else %}
+        Le {{ slot.start_date }}
+        {% endif %}
+        <br>
+        {{ slot.activity.activity_name }}<br>
+        {% if slot.attend %}
+        Vous allez aider
+        {% else %}
+        Vous êtes aider par
+        {% endif %}
+        {{ slot.user.first_name }} {{ slot.user.last_name }}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Vous n'avez pas de rendez-vous pour le moment.</p>
+{% endif %}
 {% endblock %}
