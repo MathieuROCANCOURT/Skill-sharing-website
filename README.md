@@ -4,7 +4,7 @@
 
 ### Check the system.
 
-This command check if a url is link to a view and settings for example.
+This command check if a url is link to a view and settings for example also before migrate in the database.
 
 ```bash
 python migrate.py check
@@ -21,8 +21,8 @@ python migrate.py shell
 ### Change models and migrate in database to apply modification in the models
 
 ```bash
-python manage.py makemigrations polls
-python manage.py sqlmigrate polls 0001
+python manage.py makemigrations skill_sharing
+python manage.py sqlmigrate skill_sharing 0001
 ```
 
 ### Change database Django
