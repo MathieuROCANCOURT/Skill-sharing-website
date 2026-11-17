@@ -16,4 +16,4 @@ def index(request):
 @require_http_methods(["GET"])
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(reverse("polls:login"))
+    return HttpResponseRedirect(reverse("skill_sharing:login"))
