@@ -1,8 +1,7 @@
 from django.conf import settings
 from django.db import models
 
-
-# Create your models here.
+from django.contrib.auth.models import User
 
 
 class Skill(models.Model):
@@ -13,7 +12,7 @@ class Skill(models.Model):
 class Activity(models.Model):
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
     activity_name = models.TextField()
-    details = models.TextField()
+    details = models.TextField(blank=True)
 
 
 class Calendar(models.Model):
@@ -23,5 +22,7 @@ class Calendar(models.Model):
 class Slot(models.Model):
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
     calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
+    attend = models.BooleanField(default=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
