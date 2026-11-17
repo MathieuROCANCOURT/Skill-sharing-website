@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 
-from .models import Skill, Activity
+from .models import Skill, Activity, Slot
 
 
 # Create your views here.
@@ -21,8 +21,10 @@ def index(request):
 def home(request):
     skills = [(activity.skill.skill_name, activity.activity_name) for activity in Activity.objects.all() if
               activity.skill.user_id == request.user.id]
+    slots = [slot for slot in Slot.objects.all() if slot.calendar.user_id == request.user.id]
     return render(request, 'skill_sharing/home.html',
-                  {'skills': skills})
+                  {'skills': skills,
+                   'slots': slots})
 
 
 @require_http_methods(["GET"])
