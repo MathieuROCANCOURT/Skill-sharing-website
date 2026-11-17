@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.views.decorators.http import require_http_methods
 
-from .models import Skill
+from .models import Skill, Activity
 
 
 # Create your views here.
@@ -19,7 +19,10 @@ def index(request):
 @require_http_methods(["GET"])
 @login_required(login_url="/skill_sharing/login/")
 def home(request):
-    return render(request, 'skill_sharing/home.html', {'skills': Skill.objects.all().filter(user_id=request.user.id)})
+    skills = [(activity.skill.skill_name, activity.activity_name) for activity in Activity.objects.all() if
+              activity.skill.user_id == request.user.id]
+    return render(request, 'skill_sharing/home.html',
+                  {'skills': skills})
 
 
 @require_http_methods(["GET"])
