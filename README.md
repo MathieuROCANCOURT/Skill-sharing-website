@@ -36,7 +36,7 @@ python manage.py shell
 #### Create a user in shell Django
 
 **Vigilance:** L'argument doit être en simple quote pour que le mot de masse soit crypté par l'algorithme PBKDF2. En
-double quotes, cela affiche le mot de passe en clair.
+double quotes, cela affiche le mot de passe en clair dans la base de données.
 
 ```py
 from django.contrib.auth.models import User
