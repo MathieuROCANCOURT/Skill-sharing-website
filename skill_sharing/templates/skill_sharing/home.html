@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Bienvenue sur entraide {{ user.first_name }}</h1>
+
+{% if skills %}
+Voici vos compétences:
+<ul>
+    {% for skill in skills %}
+    <li>{{ skill.0 }}: {{ skill.1 }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Vous n'avez pas de compétence.</p>
+{% endif %}
+{% endblock %}
