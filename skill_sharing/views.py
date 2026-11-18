@@ -1,5 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
@@ -19,8 +20,7 @@ def index(request):
 @require_http_methods(["GET"])
 @login_required(login_url="/skill_sharing/login/")
 def home(request):
-    skills = [(activity.skill.skill_name, activity.activity_name) for activity in Activity.objects.all() if
-              activity.skill.user_id == request.user.id]
+    skills = [skill.skill_name for skill in Skill.objects.filter(user__id=request.user.id)]
     slots = [slot for slot in Slot.objects.all() if slot.user is not None and slot.calendar.user_id == request.user.id]
     slots_receive = [slot for slot in Slot.objects.all() if slot.user is not None and slot.user.id == request.user.id]
     slots_available = [slot for slot in Slot.objects.all() if
