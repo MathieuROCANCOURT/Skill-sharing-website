@@ -69,6 +69,12 @@ def add_available_slot(request):
     if request.method == 'POST':
         form = SlotAvailableAddForm(request.POST, request.user)
         if form.is_valid():
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+
+            if start_date > end_date:
+                return render(request, 'skill_sharing/add_available_slot.html',
+                              {'form': form, 'error_message': "La date de début doit être avant la date de fin."})
 
             return redirect('skill_sharing:home')
     else:
