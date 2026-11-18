@@ -5,11 +5,21 @@
 {% block content %}
 <h1>Ajout une disponibilité</h1>
 {% if error_message %}
-<p class="error_message">{{ error_message }</p>
+<p class="error_message">{{ error_message }}</p>
 {% endif %}
 <form action="{% url 'skill_sharing:add_available_slot' %}" method="post">
     {% csrf_token %}
     {{ form.as_p }}
+    <p>
+        <label for="id_activity">Activités;:</label>
+        <select name="activity" required="" id="id_activity">
+            <option value="">---------</option>
+            {% for activity in user_activities %}
+            <option value="{{ activity }}">{{ activity }}</option>
+            {% endfor %}
+        </select>
+    </p>
+
     <input type="submit" value="Add">
 </form>
 {% endblock %}
