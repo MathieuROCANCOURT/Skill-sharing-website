@@ -21,14 +21,20 @@ def index(request):
 def home(request):
     skills = [(activity.skill.skill_name, activity.activity_name) for activity in Activity.objects.all() if
               activity.skill.user_id == request.user.id]
-    slots = [slot for slot in Slot.objects.all() if slot.calendar.user_id == request.user.id]
-    slots_receive = [slot for slot in Slot.objects.all() if slot.user.id == request.user.id]
+    slots = [slot for slot in Slot.objects.all() if slot.user is not None and slot.calendar.user_id == request.user.id]
+    slots_receive = [slot for slot in Slot.objects.all() if slot.user is not None and slot.user.id == request.user.id]
+    slots_available = [slot for slot in Slot.objects.all() if
+                       slot.calendar.user_id == request.user.id and slot.user is None]
+
+    # Add the slots received by the others users in the site and reverse the help directory
     for slots_receive_slot in slots_receive:
         slots_receive_slot.attend = ~slots_receive_slot.attend
         slots_receive_slot.user = slots_receive_slot.calendar.user
+
     return render(request, 'skill_sharing/home.html',
                   {'skills': skills,
-                   'slots': slots + slots_receive})
+                   'slots': slots + slots_receive,
+                   'slots_available': slots_available})
 
 
 @require_http_methods(["GET"])
