@@ -45,7 +45,7 @@ def add_skill(request):
         if form.is_valid():
             user = request.user
 
-            skill = Skill(skill_name=form.cleaned_data['skill_text'].capitalize(),)
+            skill = Skill(skill_name=form.cleaned_data['skill_text'].capitalize(), )
             if Skill.objects.filter(skill_name__iexact=str(skill.skill_name)).exists():
                 user.skill_set.add(Skill.objects.get(skill_name__iexact=str(skill.skill_name)))
                 user.save()
@@ -66,8 +66,10 @@ def add_skill(request):
 
 
 def add_available_slot(request):
+    user_activities = Activity.only_activities_user(request.user)
+
     if request.method == 'POST':
-        form = SlotAvailableAddForm(request.POST, request.user)
+        form = SlotAvailableAddForm(request.POST)
         if form.is_valid():
             start_date = form.cleaned_data['start_date']
             end_date = form.cleaned_data['end_date']
@@ -78,8 +80,8 @@ def add_available_slot(request):
 
             return redirect('skill_sharing:home')
     else:
-        form = SlotAvailableAddForm(request.GET, request.user)
-    return render(request, 'skill_sharing/add_available_slot.html', {'form': form})
+        form = SlotAvailableAddForm(request.GET)
+    return render(request, 'skill_sharing/add_available_slot.html', {'form': form, 'user_activities': user_activities, })
 
 
 @require_http_methods(["GET"])
