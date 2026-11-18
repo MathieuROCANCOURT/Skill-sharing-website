@@ -16,4 +16,6 @@ urlpatterns = [
     path("logout/", views.logout_view, name="logout"),
     # ex: /skill_sharing/home
     path("home/", views.home, name="home"),
+    # ex: /skill_sharing/home
+    path("home/add_skill", views.add_skill, name="add_skill"),
 ]
