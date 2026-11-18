@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Entraide - Ajouter une disponibilité{% endblock %}
+
+{% block content %}
+<h1>Ajout une disponibilité</h1>
+{% if error_message %}
+<p class="error_message">{{ error_message }</p>
+{% endif %}
+<form action="{% url 'skill_sharing:add_available_slot' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add">
+</form>
+{% endblock %}
