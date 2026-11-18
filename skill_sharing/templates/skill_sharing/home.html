@@ -13,6 +13,7 @@
 {% else %}
 <p>Vous n'avez pas de compétence.</p>
 {% endif %}
+<a href="{% url 'skill_sharing:add_skill' %}"><input type="button" value="Ajouter une compétence"></a>
 
 {% if slots %}
 <h2>Voici vos rendez-vous:</h2>
