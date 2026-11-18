@@ -18,9 +18,9 @@ class Calendar(models.Model):
 
 
 class Slot(models.Model):
-    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
-    calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
-    attend = models.BooleanField(default=False)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     start_date = models.DateField()
     end_date = models.DateField()
+    attend = models.BooleanField(default=False)
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, default=None, on_delete=models.CASCADE)
