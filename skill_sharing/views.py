@@ -44,16 +44,20 @@ def add_skill(request):
         form = SkillAddForm(request.POST)
         if form.is_valid():
             user = request.user
-            skill = Skill(skill_name=form.cleaned_data['skill_text'])
 
-            skill.save()
-            user.skill_set.add(skill)
-            user.save()
+            skill = Skill(skill_name=form.cleaned_data['skill_text'].capitalize(),)
+            if Skill.objects.filter(skill_name__iexact=str(skill.skill_name)).exists():
+                user.skill_set.add(Skill.objects.get(skill_name__iexact=str(skill.skill_name)))
+                user.save()
+            else:
+                skill.save()
+                user.skill_set.add(skill)
+                user.save()
 
-            activity = Activity(activity_name=form.cleaned_data['activity_text'],
-                                details=form.cleaned_data['details'],
-                                skill=skill)
-            activity.save()
+                activity = Activity(activity_name=form.cleaned_data['activity_text'],
+                                    details=form.cleaned_data['details'],
+                                    skill=skill)
+                activity.save()
 
             return redirect('skill_sharing:home')
     else:
