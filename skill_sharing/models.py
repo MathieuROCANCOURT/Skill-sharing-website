@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -15,6 +14,11 @@ class Activity(models.Model):
 
     def __str__(self):
         return self.activity_name
+
+    @staticmethod
+    def only_activities_user(user):
+        activities = Activity.objects.filter(skill__user__id=user.id)
+        return activities
 
 
 class Calendar(models.Model):
