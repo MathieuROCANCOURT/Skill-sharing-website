@@ -1,10 +1,11 @@
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 
 
 class Skill(models.Model):
     skill_name = models.TextField()
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ManyToManyField(settings.AUTH_USER_MODEL)
 
 
 class Activity(models.Model):
