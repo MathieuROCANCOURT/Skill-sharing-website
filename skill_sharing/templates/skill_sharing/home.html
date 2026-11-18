@@ -4,7 +4,7 @@
 <h1>Bienvenue sur entraide {{ user.first_name }}</h1>
 
 {% if skills %}
-Voici vos compétences:
+<h2>Voici vos compétences:</h2>
 <ul>
     {% for skill in skills %}
     <li>{{ skill.0 }}: {{ skill.1 }}</li>
@@ -15,7 +15,7 @@ Voici vos compétences:
 {% endif %}
 
 {% if slots %}
-Voici vos rendez-vous:
+<h2>Voici vos rendez-vous:</h2>
 <ul>
     {% for slot in slots %}
     <li>
