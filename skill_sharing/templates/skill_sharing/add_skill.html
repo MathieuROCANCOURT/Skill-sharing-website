@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Entraide - Ajouter une compétence{% endblock %}
+
+{% block content %}
+<h1>Ajout d'une compétence</h1>
+{% if error_message %}
+<p class="error_message">{{ error_message }</p>
+{% endif %}
+<form action="{% url 'skill_sharing:add_skill' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add">
+</form>
+{% endblock %}
