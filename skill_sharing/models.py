@@ -13,6 +13,9 @@ class Activity(models.Model):
     activity_name = models.TextField()
     details = models.TextField(blank=True)
 
+    def __str__(self):
+        return self.activity_name
+
 
 class Calendar(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
