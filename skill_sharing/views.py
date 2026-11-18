@@ -1,6 +1,5 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
@@ -9,6 +8,7 @@ from django.views.decorators.http import require_http_methods
 
 from .models import Skill, Activity, Slot, Calendar
 from .skill import SkillAddForm
+from .slot import SlotAvailableAddForm
 
 
 # Create your views here.
@@ -63,6 +63,17 @@ def add_skill(request):
     else:
         form = SkillAddForm()
     return render(request, 'skill_sharing/add_skill.html', {'form': form})
+
+
+def add_available_slot(request):
+    if request.method == 'POST':
+        form = SlotAvailableAddForm(request.POST, request.user)
+        if form.is_valid():
+
+            return redirect('skill_sharing:home')
+    else:
+        form = SlotAvailableAddForm(request.GET, request.user)
+    return render(request, 'skill_sharing/add_available_slot.html', {'form': form})
 
 
 @require_http_methods(["GET"])
