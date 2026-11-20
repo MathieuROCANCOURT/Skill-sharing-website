@@ -19,14 +19,14 @@
     {% csrf_token %}
     <table>
         <thead>
-        <th colspan="2">CONNEXION</th>
+            <th colspan="2" style="text-align: center">CONNEXION</th>
         </thead>
         <tr>
-            <td>{{ form.username.label_tag }}</td>
+            <th>{{ form.username.label_tag }}</th>
             <td>{{ form.username }}</td>
         </tr>
         <tr>
-            <td>{{ form.password.label_tag }}</td>
+            <th>{{ form.password.label_tag }}</th>
             <td>{{ form.password }}</td>
         </tr>
     </table>
