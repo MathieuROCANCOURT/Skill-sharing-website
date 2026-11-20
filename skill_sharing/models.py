@@ -32,3 +32,13 @@ class Slot(models.Model):
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
     calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, default=None, on_delete=models.CASCADE)
+
+    @staticmethod
+    def add_slot(start_date, end_date, activity, calendar, details):
+        slot = Slot(start_date=start_date, end_date=end_date, activity=activity, calendar=calendar, details=details)
+        slot.save()
+
+    @staticmethod
+    def remove_slot(slot):
+        if Slot.objects.filter(slot=slot).exists():
+            Slot.objects.filter(slot=slot).delete()
