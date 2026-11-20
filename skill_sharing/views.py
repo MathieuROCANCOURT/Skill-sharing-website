@@ -55,6 +55,7 @@ def home(request):
                    'slots_available': slots_available})
 
 
+@require_http_methods(["GET", "POST"])
 @login_required(login_url="skill_sharing:login")
 def add_skill(request):
     if request.method == 'POST':
@@ -81,6 +82,8 @@ def add_skill(request):
     return render(request, 'skill_sharing/add_skill.html', {'form': form})
 
 
+@require_http_methods(["GET", "POST"])
+@login_required(login_url="/skill_sharing/login/")
 def add_available_slot(request):
     if request.method == 'POST':
         form = SlotAvailableAddForm(request.POST, user=request.user)
