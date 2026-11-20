@@ -70,8 +70,6 @@ def add_skill(request):
 
 
 def add_available_slot(request):
-    user_activities = Activity.only_activities_user(request.user)
-
     if request.method == 'POST':
         form = SlotAvailableAddForm(request.POST, user=request.user)
         if form.is_valid():
@@ -91,7 +89,7 @@ def add_available_slot(request):
     else:
         form = SlotAvailableAddForm(user=request.user)
     return render(request, 'skill_sharing/add_available_slot.html',
-                  {'form': form, 'user_activities': user_activities, })
+                  {'form': form})
 
 
 @require_http_methods(["GET"])
