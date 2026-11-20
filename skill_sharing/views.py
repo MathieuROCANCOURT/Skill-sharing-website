@@ -80,11 +80,14 @@ def add_available_slot(request):
 
             if start_date > end_date:
                 return render(request, 'skill_sharing/add_available_slot.html',
-                              {'form': form, 'error_message': "La date de début doit être avant la date de fin."})
+                              {'form': form,
+                               'error_message': "La date de début doit être avant la date de fin."})
 
-            slot = Slot(start_date=start_date, end_date=end_date, activity=activity, calendar=request.user.calendar,
-                        details=details)
-            slot.save()
+            Slot.add_slot(start_date=start_date,
+                          end_date=end_date,
+                          activity=activity,
+                          calendar=request.user.calendar,
+                          details=details)
             return redirect('skill_sharing:home')
     else:
         form = SlotAvailableAddForm(user=request.user)
