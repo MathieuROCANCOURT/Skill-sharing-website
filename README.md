@@ -1,5 +1,23 @@
 # Skill-sharing-website
 
+## UML Diagrams
+
+### Use case diagram
+
+![Use case diagram.png](doc/1-Use%20case/Use%20case%20diagram.png)
+
+### Class diagram
+
+![Class diagram.png](doc/2-Class/Class%20diagram.png)
+
+### Sequence diagram
+
+![User sequential diagram on display calendar with available.png](doc/3-Sequence/User%20sequential%20diagram%20on%20display%20calendar%20with%20available.png)
+
+## Mockup webstie
+
+![website mockup.png](doc/4-Mockup/website%20mockup.png)
+
 ## Command-line
 
 ### Check the system.
