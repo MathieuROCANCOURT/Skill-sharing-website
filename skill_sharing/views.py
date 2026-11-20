@@ -16,6 +16,14 @@ from .slot import SlotAvailableAddForm
 # Create your views here.
 
 @require_http_methods(["GET"])
+def root(request):
+    return render(request, 'skill_sharing/root.html',
+                  {
+                      "skills": Skill.get_all_skills(),
+                  })
+
+
+@require_http_methods(["GET"])
 def index(request):
     return HttpResponse("Hello, world. You're at the skill_sharing index.")
 
