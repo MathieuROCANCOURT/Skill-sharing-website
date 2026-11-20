@@ -3,8 +3,8 @@
 {% block content %}
 <h1>Bienvenue sur le site de l'entraide</h1>
 
+<h2>Voici les compétences disponibles sur le site</h2>
 {% if skills %}
-<h2>Voici les compétences disponibles sur le site:</h2>
 <ul>
     {% for skill in skills %}
     <li>{{ skill.skill_name }}</li>
@@ -12,5 +12,23 @@
 </ul>
 {% else %}
 <p>Pas de compétence actuellement. ☹️😭</p>
+{% endif %}
+
+<h2>Voici les 4 prochaines créneaux valider pour aider</h2>
+{% if next_slots %}
+<ul>
+    {% for slot in next_slots %}
+    <li>
+        {% if slot.start_date != slot.end_date %}
+        Du {{ slot.start_date }} au {{ slot.end_date }}
+        {% else %}
+        Le {{ slot.start_date }}
+        {% endif %}
+        pour aider sur le {{ slot.activity.activity_name }}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Pas de créneau futur pour aider</p>
 {% endif %}
 {% endblock %}
