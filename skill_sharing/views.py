@@ -33,11 +33,6 @@ def root(request):
 
 
 @require_http_methods(["GET"])
-def index(request):
-    return HttpResponse("Hello, world. You're at the skill_sharing index.")
-
-
-@require_http_methods(["GET"])
 @login_required(login_url="/skill_sharing/login/")
 def home(request):
     skills = [skill.skill_name for skill in Skill.objects.filter(user__id=request.user.id)]
