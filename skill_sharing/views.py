@@ -1,11 +1,10 @@
-from calendar import calendar
-
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 
 from .models import Skill, Activity, Slot, Calendar
@@ -17,9 +16,19 @@ from .slot import SlotAvailableAddForm
 
 @require_http_methods(["GET"])
 def root(request):
+    next_slots = []
+    now = timezone.now()
+
+    for slot in Slot.objects.all().order_by('start_date'):
+        if slot.user is not None and now.date() <= slot.start_date:
+            next_slots.append(slot)
+            if len(next_slots) > 4:
+                break
+
     return render(request, 'skill_sharing/root.html',
                   {
                       "skills": Skill.get_all_skills(),
+                      "next_slots": next_slots,
                   })
 
 
