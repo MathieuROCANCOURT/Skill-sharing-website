@@ -32,9 +32,12 @@ def home(request):
         slots_receive_slot.attend = ~slots_receive_slot.attend
         slots_receive_slot.user = slots_receive_slot.calendar.user
 
+    slots += slots_receive
+    slots.sort(key=lambda slot: slot.start_date)
+
     return render(request, 'skill_sharing/home.html',
                   {'skills': skills,
-                   'slots': slots + slots_receive,
+                   'slots': slots,
                    'slots_available': slots_available})
 
 
