@@ -1,3 +1,5 @@
+from calendar import calendar
+
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -58,7 +60,6 @@ def add_skill(request):
                 user.save()
 
                 activity = Activity(activity_name=form.cleaned_data['activity_text'],
-                                    details=form.cleaned_data['details'],
                                     skill=skill)
                 activity.save()
 
@@ -72,19 +73,25 @@ def add_available_slot(request):
     user_activities = Activity.only_activities_user(request.user)
 
     if request.method == 'POST':
-        form = SlotAvailableAddForm(request.POST)
+        form = SlotAvailableAddForm(request.POST, user=request.user)
         if form.is_valid():
             start_date = form.cleaned_data['start_date']
             end_date = form.cleaned_data['end_date']
+            details = form.cleaned_data['details']
+            activity = form.cleaned_data['activity']
 
             if start_date > end_date:
                 return render(request, 'skill_sharing/add_available_slot.html',
                               {'form': form, 'error_message': "La date de début doit être avant la date de fin."})
 
+            slot = Slot(start_date=start_date, end_date=end_date, activity=activity, calendar=request.user.calendar,
+                        details=details)
+            slot.save()
             return redirect('skill_sharing:home')
     else:
-        form = SlotAvailableAddForm(request.GET)
-    return render(request, 'skill_sharing/add_available_slot.html', {'form': form, 'user_activities': user_activities, })
+        form = SlotAvailableAddForm(user=request.user)
+    return render(request, 'skill_sharing/add_available_slot.html',
+                  {'form': form, 'user_activities': user_activities, })
 
 
 @require_http_methods(["GET"])
