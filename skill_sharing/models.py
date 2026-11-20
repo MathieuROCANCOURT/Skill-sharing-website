@@ -6,6 +6,10 @@ class Skill(models.Model):
     skill_name = models.TextField()
     user = models.ManyToManyField(settings.AUTH_USER_MODEL)
 
+    @staticmethod
+    def get_all_skills():
+        return Skill.objects.all()
+
 
 class Activity(models.Model):
     skill = models.ForeignKey(Skill, on_delete=models.CASCADE)
