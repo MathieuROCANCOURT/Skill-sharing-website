@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if error_message %}
+<p class="error_message">{{ error_message }</p>
+{% endif %}
+{% if slots_to_help %}
+{% for slot in slots_to_help %}
+    {{ slot }}
+{% endfor %}
+{% else %}
+<p>Pas besoin d'aide pour le moment</p>
+{% endif %}
+{% endblock %}
