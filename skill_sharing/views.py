@@ -1,13 +1,12 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_http_methods
 
-from .models import Skill, Activity, Slot, Calendar
+from .models import Skill, Activity, Slot
 from .skill import SkillAddForm
 from .slot import SlotAvailableAddForm
 
@@ -52,7 +51,8 @@ def home(request):
     return render(request, 'skill_sharing/home.html',
                   {'skills': skills,
                    'slots': slots,
-                   'slots_available': slots_available})
+                   'slots_available': slots_available,
+                   })
 
 
 @require_http_methods(["GET", "POST"])
