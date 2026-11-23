@@ -32,7 +32,7 @@
         {% else %}
         Vous êtes aider par
         {% endif %}
-        {{ slot.user.first_name }} {{ slot.user.last_name }}
+        {{ slot.user.first_name }} {{ slot.user.last_name }}, {{ slot.user.email }}
     </li>
     {% endfor %}
 </ul>
