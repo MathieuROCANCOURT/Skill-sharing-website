@@ -52,6 +52,7 @@ def home(request):
                   {'skills': skills,
                    'slots': slots,
                    'slots_available': slots_available,
+                   'activity_list': Activity.only_activities_user(request.user),
                    })
 
 
