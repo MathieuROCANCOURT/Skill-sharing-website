@@ -1,5 +1,6 @@
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from django.db.models.query_utils import Q
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -54,6 +55,15 @@ def home(request):
                    'slots_available': slots_available,
                    'activity_list': Activity.only_activities_user(request.user),
                    })
+
+
+@require_http_methods(["GET", "POST"])
+@login_required(login_url="skill_sharing:login")
+def help_slot(request, activity_id):
+    slots_to_help = Slot.objects.filter(~Q(calendar__user=request.user),
+                                        activity_id=activity_id,
+                                        user_id=None).order_by('start_date')
+    return render(request, 'skill_sharing/help_slot.html', {'slots_to_help': slots_to_help})
 
 
 @require_http_methods(["GET", "POST"])
