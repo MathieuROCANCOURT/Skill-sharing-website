@@ -12,7 +12,8 @@
     <ul>
         <li><a href="/skill_sharing/">Accueil</a></li>
         {% if user.is_authenticated %}
-        <li>Profil: {{ user.username }}</li> <a href="/skill_sharing/logout"><button>Déconnexion</button></a>
+        <li><a href="/skill_sharing/home">Profil: {{ user.username }}</a></li>
+        <a href="/skill_sharing/logout"><button>Déconnexion</button></a>
         {% else %}
         <li><a href="/skill_sharing/login">Connexion</a></li>
         {% endif %}
