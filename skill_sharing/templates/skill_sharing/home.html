@@ -4,7 +4,7 @@
 <h1>Bienvenue sur entraide {{ user.first_name }}</h1>
 
 {% if skills %}
-<h2>Voici vos compétences:</h2>
+<h2>Voici vos compétences</h2>
 <ul>
     {% for skill in skills %}
     <li>{{ skill }}</li>
@@ -16,7 +16,7 @@
 <a href="{% url 'skill_sharing:add_skill' %}"><input type="button" value="Ajouter une compétence"></a>
 
 {% if slots %}
-<h2>Voici vos rendez-vous:</h2>
+<h2>Voici vos rendez-vous</h2>
 <ul>
     {% for slot in slots %}
     <li>
@@ -40,7 +40,7 @@
 <p>Vous n'avez pas de rendez-vous pour le moment.</p>
 {% endif %}
 
-<h2>Voici vos disponibilités pour être aidé:</h2>
+<h2>Voici vos disponibilités pour être aidé</h2>
 <a href="{% url 'skill_sharing:add_available_slot' %}"><input type="button" value="Ajouter une disponibilité"></a>
 {% if slots_available %}
 <ul>
@@ -58,5 +58,18 @@
 </ul>
 {% else %}
 <p>Vous n'avez pas de disponibilité pour le moment.</p>
+{% endif %}
+
+<h2>Voici la liste des activités pour aider d'autres personnes</h2>
+{% if activity_list %}
+<ul>
+    {% for activity in activity_list %}
+    <li>
+        <a href="{% url 'skill_sharing:help_slot' activity.id %}"><button>{{ activity.activity_name }}</button></a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Pas d'activité</p>
 {% endif %}
 {% endblock %}
