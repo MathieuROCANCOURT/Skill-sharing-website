@@ -16,8 +16,8 @@ urlpatterns = [
     path("logout/", views.logout_view, name="logout"),
     # ex: /skill_sharing/home
     path("home/", views.home, name="home"),
-    # ex: /skill_sharing/home/help_slot
-    path("home/<int:pk>/help_slot", views.HelpSlot.as_view(), name="help_slot"),
+    # ex: /skill_sharing/home/2/help_slot
+    path("home/<int:activity_id>/help_slot", views.help_slot, name="help_slot"),
     # ex: /skill_sharing/home/add_skill
     path("home/add_skill", views.add_skill, name="add_skill"),
     # ex: /skill_sharing/home/add_available_slot
