@@ -1,5 +1,48 @@
 # Skill-sharing-website
 
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+
+## Installation and run
+
+### Python compatibility
+
+Django 5.2 supports Python 3.10, 3.11, 3.12, 3.13, and 3.14 (as of 5.2.8). We highly recommend and only officially
+support the latest release of each series.
+
+### Windows
+
+Open your terminal (Windows PowerShell) and enter these commands.
+
+```bash
+git clone https://github.com/MathieuROCANCOURT/Skill-sharing-website.git
+cd ./Skill-sharing-website
+python -m venv .venv
+.\.venv\Script\activate
+pip install -r requirements.txt
+python manage.py runserver
+```
+
+### Ubuntu
+
+Open your terminal and enter these commands.
+
+```bash
+git clone https://github.com/MathieuROCANCOURT/Skill-sharing-website.git
+cd ./Skill-sharing-website
+python -m venv .venv
+source ./.venv/Scripts/activate
+pip install -r requirements.txt
+python manage.py runserver
+```
+
+## User in actual database
+
+| Username | Password          |
+|----------|-------------------|
+| user     | fD86adVs0p\cM£s>j |
+| pilou    | jop&59k-ferHjuy   |
+| toupie   | fselhiµ594fer486y |
+
 ## UML Diagrams
 
 ### Use case diagram
