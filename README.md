@@ -57,7 +57,7 @@ python manage.py runserver
 
 ![User sequential diagram on display calendar with available.png](doc/3-Sequence/User%20sequential%20diagram%20on%20display%20calendar%20with%20available.png)
 
-## Mockup webstie
+## Mockup website
 
 ![website mockup.png](doc/4-Mockup/website%20mockup.png)
 
