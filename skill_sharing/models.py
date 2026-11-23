@@ -37,6 +37,25 @@ class Slot(models.Model):
     calendar = models.ForeignKey(Calendar, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, default=None, on_delete=models.CASCADE)
 
+    def __str__(self):
+        date_format = '%m/%d/%Y'
+
+        if self.start_date == self.end_date:
+            display_slot = "{0} le {1} avec {2} {3}".format(self.activity.activity_name,
+                                                            self.start_date.strftime(date_format),
+                                                            self.calendar.user.first_name,
+                                                            self.calendar.user.last_name)
+        else:
+            display_slot = "{0} du {1} au {2} avec {3} {4}".format(self.activity.activity_name,
+                                                                   self.start_date.strftime(date_format),
+                                                                   self.end_date.strftime(date_format),
+                                                                   self.calendar.user.first_name,
+                                                                   self.calendar.user.last_name)
+
+        if self.details != "":
+            display_slot += ", " + self.details
+        return display_slot
+
     @staticmethod
     def add_slot(start_date, end_date, activity, calendar, details):
         slot = Slot(start_date=start_date, end_date=end_date, activity=activity, calendar=calendar, details=details)
